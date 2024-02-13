@@ -1,0 +1,13 @@
+<server description="Web-Profile OpenLiberty Server">
+    <featureManager>
+        <feature>webProfile-10.0</feature>
+    </featureManager>
+
+    <variable name="default.http.port" defaultValue="9080"/>
+    <variable name="default.https.port" defaultValue="9443"/>
+    <variable name="app.context.root" defaultValue=""/>
+
+    <httpEndpoint httpPort="${default.http.port}" 
+    httpsPort="${default.https.port}" id="defaultHttpEndpoint"  host="*" />
+    <webApplication id="ollama4j-ui" location="ollama4j-ui.war" contextRoot="${app.context.root}" />
+</server>
