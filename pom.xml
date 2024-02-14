@@ -50,9 +50,15 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>io.github.amithkoujalgi</groupId>
+            <artifactId>ollama4j</artifactId>
+            <version>1.0.53-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.vaadin</groupId>
             <!-- Replace artifactId with vaadin-core to use only free components -->
-            <artifactId>vaadin</artifactId>
+            <artifactId>vaadin-core</artifactId>
         </dependency>
         <dependency>
             <groupId>com.vaadin</groupId>
