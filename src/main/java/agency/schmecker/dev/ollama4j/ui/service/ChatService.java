@@ -1,5 +1,6 @@
 package agency.schmecker.dev.ollama4j.ui.service;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,21 +11,23 @@ import io.github.amithkoujalgi.ollama4j.core.models.chat.OllamaChatMessageRole;
 import io.github.amithkoujalgi.ollama4j.core.models.chat.OllamaChatRequestBuilder;
 import io.github.amithkoujalgi.ollama4j.core.models.chat.OllamaChatRequestModel;
 import io.github.amithkoujalgi.ollama4j.core.models.chat.OllamaChatResult;
-import io.github.amithkoujalgi.ollama4j.core.types.OllamaModelType;
-import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.ejb.EJB;
+import jakarta.ejb.Stateful;
+import jakarta.inject.Inject;
 
-@ApplicationScoped
-public class ChatService {
+@EJB
+@Stateful
+public class ChatService implements Serializable {
 
     private List<OllamaChatMessage> messages = new ArrayList<>();
 
-    private String model = OllamaModelType.LLAVA;
-
-    private OllamaAPI api = new OllamaAPI("http://localhost:11434");
+    @Inject
+    private OllamaService ollamaService;
 
     public String sendChat(String message, OllamaStreamHandler asyncHandler){
+        OllamaAPI api = ollamaService.getOllamaAPIInstance();
         api.setRequestTimeoutSeconds(240);
-        OllamaChatRequestBuilder builder = OllamaChatRequestBuilder.getInstance(model);
+        OllamaChatRequestBuilder builder = OllamaChatRequestBuilder.getInstance(ollamaService.getModel());
 
         OllamaChatRequestModel ollamaChatRequestModel = builder.withMessages(messages).withMessage(OllamaChatMessageRole.USER, message).build();
 

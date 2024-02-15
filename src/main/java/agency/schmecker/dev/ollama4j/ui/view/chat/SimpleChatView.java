@@ -1,4 +1,4 @@
-package agency.schmecker.dev.ollama4j.ui.view;
+package agency.schmecker.dev.ollama4j.ui.view.chat;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -21,10 +21,10 @@ import jakarta.inject.Inject;
  * The main view contains a text field for getting the user name and a button
  * that shows a greeting message in a notification.
  */
-@Route(value = "chat",layout = MainLayout.class)
-@PageTitle("Chat / Conversation")
+@Route(value = "chat/simple",layout = MainLayout.class)
+@PageTitle("Text only chat")
 @CdiComponent
-public class ChatView extends VerticalLayout {
+public class SimpleChatView extends VerticalLayout {
 
    private MessageList chat;
     private MessageInput input;
@@ -33,7 +33,7 @@ public class ChatView extends VerticalLayout {
     @Inject
     private ChatService chatService;
 
-    public ChatView() {
+    public SimpleChatView() {
         
         chat = new MessageList();
         input = new MessageInput();
