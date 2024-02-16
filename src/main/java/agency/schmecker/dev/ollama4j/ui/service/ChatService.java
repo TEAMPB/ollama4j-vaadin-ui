@@ -24,7 +24,7 @@ public class ChatService implements Serializable {
     @Inject
     private OllamaService ollamaService;
 
-    public String sendChat(String message, OllamaStreamHandler asyncHandler){
+    public String sendChat(String message, OllamaStreamHandler streamHandler){
         OllamaAPI api = ollamaService.getOllamaAPIInstance();
         api.setRequestTimeoutSeconds(240);
         OllamaChatRequestBuilder builder = OllamaChatRequestBuilder.getInstance(ollamaService.getModel());
@@ -32,7 +32,7 @@ public class ChatService implements Serializable {
         OllamaChatRequestModel ollamaChatRequestModel = builder.withMessages(messages).withMessage(OllamaChatMessageRole.USER, message).build();
 
         try {
-            OllamaChatResult chat = api.chat(ollamaChatRequestModel,asyncHandler);
+            OllamaChatResult chat = api.chat(ollamaChatRequestModel,streamHandler);
             messages = chat.getChatHistory();
             return chat.getResponse();
         } catch (Exception e) {
