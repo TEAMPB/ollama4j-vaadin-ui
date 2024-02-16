@@ -5,8 +5,6 @@ import java.util.Map;
 
 import io.github.amithkoujalgi.ollama4j.core.OllamaAPI;
 import io.github.amithkoujalgi.ollama4j.core.OllamaStreamHandler;
-import io.github.amithkoujalgi.ollama4j.core.models.generate.OllamaGenerateRequestBuilder;
-import io.github.amithkoujalgi.ollama4j.core.models.generate.OllamaGenerateRequestModel;
 import io.github.amithkoujalgi.ollama4j.core.utils.Options;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateful;

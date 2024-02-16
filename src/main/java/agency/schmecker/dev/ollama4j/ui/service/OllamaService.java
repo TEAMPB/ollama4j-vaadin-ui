@@ -3,8 +3,6 @@ package agency.schmecker.dev.ollama4j.ui.service;
 import java.io.Serializable;
 
 import org.eclipse.microprofile.config.inject.ConfigProperty;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 import io.github.amithkoujalgi.ollama4j.core.OllamaAPI;
@@ -15,8 +13,6 @@ import jakarta.inject.Inject;
 @EJB
 @Stateful
 public class OllamaService implements Serializable{
-
-private static final Logger LOG = LoggerFactory.getLogger(OllamaService.class);
 
     
     @Inject @ConfigProperty(name="agency.schmecker.dev.ollama4j.ui.ollama.url",defaultValue = "ö")
