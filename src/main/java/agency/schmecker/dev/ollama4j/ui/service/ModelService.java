@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import io.github.amithkoujalgi.ollama4j.core.OllamaAPI;
 import io.github.amithkoujalgi.ollama4j.core.exceptions.OllamaBaseException;
 import io.github.amithkoujalgi.ollama4j.core.models.Model;
+import io.github.amithkoujalgi.ollama4j.core.models.ModelDetail;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateful;
@@ -52,6 +53,17 @@ public class ModelService implements Serializable{
             return Collections.emptyList();
         }
         return loadedModels.stream().map(m -> m.getName()).toList();
+    }
+
+    public ModelDetail loadModelDetail(Model model) {
+        OllamaAPI api = ollamaService.getOllamaAPIInstance();
+        try {
+            return api.getModelDetails(model.getModel());
+        } catch (IOException | OllamaBaseException | InterruptedException | URISyntaxException e) {
+            LOG.error("Could not load details to model " + model.getModel(), e);
+            return null;
+        }
+        
     }
 
 }
