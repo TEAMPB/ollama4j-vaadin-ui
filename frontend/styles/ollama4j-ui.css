@@ -1,0 +1,10 @@
+.modelMenu{
+    margin-right: 15px;
+}
+
+.ollama-image{
+    max-width: 100px;
+    position: absolute;
+    bottom: 20px;
+    left: 100px;
+}
