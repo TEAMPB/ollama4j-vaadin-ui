@@ -7,6 +7,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -22,7 +23,7 @@ import agency.schmecker.dev.ollama4j.ui.view.generate.SimpleGenerateView;
 import jakarta.annotation.PostConstruct;
 import jakarta.inject.Inject;
 
-@CssImport("styles/my.css")
+@CssImport("styles/ollama4j-ui.css")
 public class MainLayout extends AppLayout{
 
     @Inject
@@ -73,7 +74,11 @@ public class MainLayout extends AppLayout{
         RouterLink listModelsRouterLink = new RouterLink("List models",SimpleGenerateView.class);
         listModelsRouterLink.setHighlightCondition(HighlightConditions.sameLocation());
         modelAccordion.add("Generate",listModelsRouterLink);
-        drawer = new VerticalLayout(chatAccordion,generateAccordion,modelAccordion);
+
+        Image image = new Image("images/ollama4j.jpeg", "ollama4j icon");
+        image.setClassName("ollama-image");
+
+        drawer = new VerticalLayout(chatAccordion,generateAccordion,modelAccordion,image);
         addToDrawer(drawer);
 
     }
