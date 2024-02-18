@@ -20,6 +20,7 @@ import agency.schmecker.dev.ollama4j.ui.service.ModelService;
 import agency.schmecker.dev.ollama4j.ui.service.OllamaService;
 import agency.schmecker.dev.ollama4j.ui.view.chat.SimpleChatView;
 import agency.schmecker.dev.ollama4j.ui.view.generate.SimpleGenerateView;
+import agency.schmecker.dev.ollama4j.ui.view.model.ListModelsView;
 import jakarta.annotation.PostConstruct;
 import jakarta.inject.Inject;
 
@@ -71,7 +72,7 @@ public class MainLayout extends AppLayout{
         generateAccordion.add("Generate",simpleGenerateRouterLink);
 
         Accordion modelAccordion = new Accordion();
-        RouterLink listModelsRouterLink = new RouterLink("List models",SimpleGenerateView.class);
+        RouterLink listModelsRouterLink = new RouterLink("List models",ListModelsView.class);
         listModelsRouterLink.setHighlightCondition(HighlightConditions.sameLocation());
         modelAccordion.add("Generate",listModelsRouterLink);
 
