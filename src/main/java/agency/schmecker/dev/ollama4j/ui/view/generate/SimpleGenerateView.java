@@ -2,6 +2,7 @@ package agency.schmecker.dev.ollama4j.ui.view.generate;
 
 import com.vaadin.cdi.annotation.CdiComponent;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
@@ -24,6 +25,8 @@ public class SimpleGenerateView extends VerticalLayout {
     private TextArea answerTextArea = new TextArea();
 
     public SimpleGenerateView() {
+        H2 header = new H2("Simple request sample");
+
         questionTextField.setWidthFull();
         questionTextField.setLabel("Question");
         questionTextField.setPlaceholder("Please enter a question");
@@ -40,7 +43,7 @@ public class SimpleGenerateView extends VerticalLayout {
 
         Button askButton = new Button("Ask model", e -> sendQuestion());
 
-        add(questionTextField, askButton,sentQuestionTextArea, answerTextArea);
+        add(header, questionTextField, askButton,sentQuestionTextArea, answerTextArea);
     }
 
     private void sendQuestion() {

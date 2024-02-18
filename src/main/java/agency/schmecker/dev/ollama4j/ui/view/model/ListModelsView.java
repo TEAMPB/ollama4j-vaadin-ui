@@ -5,6 +5,7 @@ import java.util.stream.Stream;
 import com.vaadin.cdi.annotation.CdiComponent;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.data.renderer.ComponentRenderer;
@@ -30,6 +31,7 @@ public class ListModelsView extends VerticalLayout{
 
     @PostConstruct
     public void init(){
+        H2 header = new H2("Loaded models");
         grid.addColumn(Model::getModelName).setHeader("Model Name");
         grid.addColumn(Model::getModelVersion).setHeader("Model Version");
 
@@ -39,7 +41,7 @@ public class ListModelsView extends VerticalLayout{
 
         grid.setItemDetailsRenderer(createModelDetailsRenderer());
 
-        this.add(grid);
+        this.add(header, grid);
         this.setHeightFull();
     }
 

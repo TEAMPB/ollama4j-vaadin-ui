@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.vaadin.cdi.annotation.CdiComponent;
+import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.messages.MessageInput;
 import com.vaadin.flow.component.messages.MessageList;
 import com.vaadin.flow.component.messages.MessageListItem;
@@ -34,13 +35,14 @@ public class SimpleChatView extends VerticalLayout {
     private ChatService chatService;
 
     public SimpleChatView() {
+
+        H2 header = new H2("Text only chat sample");
         
         chat = new MessageList();
         input = new MessageInput();
         chat.setItems(new MessageListItem[0]);
-        add(chat, input);
+        add(header, chat, input);
         input.addSubmitListener(this::onSubmit);
-        
         this.setHorizontalComponentAlignment(Alignment.CENTER,
         chat, input);
         this.setPadding(true); // Leave some white space
