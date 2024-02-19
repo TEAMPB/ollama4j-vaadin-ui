@@ -2,6 +2,7 @@ package agency.schmecker.dev.ollama4j.ui.view.generate;
 
 import com.vaadin.cdi.annotation.CdiComponent;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
@@ -42,6 +43,7 @@ public class SimpleGenerateView extends VerticalLayout {
         answerTextArea.setReadOnly(true);
 
         Button askButton = new Button("Ask model", e -> sendQuestion());
+        askButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 
         add(header, questionTextField, askButton,sentQuestionTextArea, answerTextArea);
     }

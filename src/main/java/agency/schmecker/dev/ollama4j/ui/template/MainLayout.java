@@ -21,6 +21,7 @@ import agency.schmecker.dev.ollama4j.ui.service.OllamaService;
 import agency.schmecker.dev.ollama4j.ui.view.chat.SimpleChatView;
 import agency.schmecker.dev.ollama4j.ui.view.generate.SimpleGenerateView;
 import agency.schmecker.dev.ollama4j.ui.view.model.ListModelsView;
+import agency.schmecker.dev.ollama4j.ui.view.model.PullModelView;
 import jakarta.annotation.PostConstruct;
 import jakarta.inject.Inject;
 
@@ -74,7 +75,11 @@ public class MainLayout extends AppLayout{
         Accordion modelAccordion = new Accordion();
         RouterLink listModelsRouterLink = new RouterLink("List models",ListModelsView.class);
         listModelsRouterLink.setHighlightCondition(HighlightConditions.sameLocation());
-        modelAccordion.add("Generate",listModelsRouterLink);
+        RouterLink pullModelRouterLink = new RouterLink("Pull model",PullModelView.class);
+        pullModelRouterLink.setHighlightCondition(HighlightConditions.sameLocation());
+        VerticalLayout modelVerticalLayout = new VerticalLayout(listModelsRouterLink,pullModelRouterLink);
+        modelVerticalLayout.setPadding(false);
+        modelAccordion.add("Models",modelVerticalLayout);
 
         Image image = new Image("images/ollama4j.jpeg", "ollama4j icon");
         image.setClassName("ollama-image");

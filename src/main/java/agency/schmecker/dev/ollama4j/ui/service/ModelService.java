@@ -66,4 +66,13 @@ public class ModelService implements Serializable{
         
     }
 
+    public void pullModel(String modelName) {
+        OllamaAPI api = ollamaService.getOllamaAPIInstance();
+        try {
+            api.pullModel(modelName);
+        } catch (OllamaBaseException | IOException | URISyntaxException | InterruptedException e) {
+            LOG.error("Could not load Model " + modelName, e);
+        }
+    }
+
 }
