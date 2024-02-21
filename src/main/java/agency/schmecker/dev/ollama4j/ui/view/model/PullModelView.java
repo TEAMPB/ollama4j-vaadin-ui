@@ -6,6 +6,8 @@ import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.formlayout.FormLayout.ResponsiveStep;
 import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
@@ -38,7 +40,10 @@ public class PullModelView extends VerticalLayout{
     }
 
     private void pullModel() {
-        modelService.pullModel(modelName+":"+modelVersion);
+        modelService.pullModel(modelName.getValue()+":"+modelVersion.getValue());
+        Notification notification = Notification
+            .show("Model pull successful!");
+        notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
     }
 
 }
