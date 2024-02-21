@@ -11,12 +11,10 @@ import io.github.amithkoujalgi.ollama4j.core.models.chat.OllamaChatMessageRole;
 import io.github.amithkoujalgi.ollama4j.core.models.chat.OllamaChatRequestBuilder;
 import io.github.amithkoujalgi.ollama4j.core.models.chat.OllamaChatRequestModel;
 import io.github.amithkoujalgi.ollama4j.core.models.chat.OllamaChatResult;
-import jakarta.ejb.EJB;
-import jakarta.ejb.Stateful;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
-@EJB
-@Stateful
+@ApplicationScoped
 public class ChatService implements Serializable {
 
     private List<OllamaChatMessage> messages = new ArrayList<>();

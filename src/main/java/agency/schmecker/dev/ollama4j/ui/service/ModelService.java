@@ -15,12 +15,10 @@ import io.github.amithkoujalgi.ollama4j.core.exceptions.OllamaBaseException;
 import io.github.amithkoujalgi.ollama4j.core.models.Model;
 import io.github.amithkoujalgi.ollama4j.core.models.ModelDetail;
 import jakarta.annotation.PostConstruct;
-import jakarta.ejb.EJB;
-import jakarta.ejb.Stateful;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
-@EJB
-@Stateful
+@ApplicationScoped
 public class ModelService implements Serializable{
 
     private static final Logger LOG = LoggerFactory.getLogger(ModelService.class);

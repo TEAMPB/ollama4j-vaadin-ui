@@ -3,17 +3,12 @@ package agency.schmecker.dev.ollama4j.ui.service;
 import java.io.Serializable;
 
 import org.eclipse.microprofile.config.inject.ConfigProperty;
-
-
 import io.github.amithkoujalgi.ollama4j.core.OllamaAPI;
-import jakarta.ejb.EJB;
-import jakarta.ejb.Stateful;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
-@EJB
-@Stateful
+@ApplicationScoped
 public class OllamaService implements Serializable{
-
     
     @Inject @ConfigProperty(name="agency.schmecker.dev.ollama4j.ui.ollama.url",defaultValue = "ö")
     private String url;
