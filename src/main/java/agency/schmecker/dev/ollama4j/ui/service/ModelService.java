@@ -32,16 +32,21 @@ public class ModelService implements Serializable{
 
     @PostConstruct
     public void init(){
-        OllamaAPI api = ollamaService.getOllamaAPIInstance();
-        try {
-            loadedModels = api.listModels();
-        } catch (OllamaBaseException | IOException | InterruptedException | URISyntaxException e) {
-            LOG.error("Models could not be loaded from Ollama server!", e);
-        }
+        refreshLoadedModels();
     }
 
     public List<Model> getLoadedModels() {
         return loadedModels;
+    }
+
+    public void refreshLoadedModels(){
+        OllamaAPI api = ollamaService.getOllamaAPIInstance();
+        try {
+            loadedModels = api.listModels();
+            LOG.info("Loading models from Ollama");
+        } catch (OllamaBaseException | IOException | InterruptedException | URISyntaxException e) {
+            LOG.error("Models could not be loaded from Ollama server!", e);
+        }
     }
 
     public void setLoadedModels(List<Model> loadedModels) {
@@ -58,6 +63,7 @@ public class ModelService implements Serializable{
     public ModelDetail loadModelDetail(Model model) {
         OllamaAPI api = ollamaService.getOllamaAPIInstance();
         try {
+            LOG.info("Loading details of model: " + model.getModel());
             return api.getModelDetails(model.getModel());
         } catch (IOException | OllamaBaseException | InterruptedException | URISyntaxException e) {
             LOG.error("Could not load details to model " + model.getModel(), e);
@@ -69,9 +75,21 @@ public class ModelService implements Serializable{
     public void pullModel(String modelName) {
         OllamaAPI api = ollamaService.getOllamaAPIInstance();
         try {
+            LOG.info("Pulling model: " + modelName);
             api.pullModel(modelName);
         } catch (OllamaBaseException | IOException | URISyntaxException | InterruptedException e) {
             LOG.error("Could not load Model " + modelName, e);
+        }
+    }
+
+    public void deleteModel(String modelName) {
+        OllamaAPI api = ollamaService.getOllamaAPIInstance();
+        LOG.info(modelName);
+        try {
+            LOG.info("Deleting model: " + modelName);
+            api.deleteModel(modelName,true);
+        } catch (OllamaBaseException | IOException | URISyntaxException | InterruptedException e) {
+            LOG.error("Could not delete Model " + modelName, e);
         }
     }
 
