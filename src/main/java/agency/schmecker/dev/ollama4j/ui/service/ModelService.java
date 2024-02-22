@@ -75,6 +75,7 @@ public class ModelService implements Serializable{
         try {
             LOG.info("Pulling model: " + modelName);
             api.pullModel(modelName);
+            refreshLoadedModels();
         } catch (OllamaBaseException | IOException | URISyntaxException | InterruptedException e) {
             LOG.error("Could not load Model " + modelName, e);
         }
@@ -86,6 +87,7 @@ public class ModelService implements Serializable{
         try {
             LOG.info("Deleting model: " + modelName);
             api.deleteModel(modelName,true);
+            refreshLoadedModels();
         } catch (OllamaBaseException | IOException | URISyntaxException | InterruptedException e) {
             LOG.error("Could not delete Model " + modelName, e);
         }

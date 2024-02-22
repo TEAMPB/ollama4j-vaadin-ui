@@ -1,13 +1,18 @@
 package agency.schmecker.dev.ollama4j.ui.template;
 
+import java.util.List;
 import com.vaadin.flow.component.accordion.Accordion;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.NotificationVariant;
+import com.vaadin.flow.component.notification.Notification.Position;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -91,35 +96,68 @@ public class MainLayout extends AppLayout{
 
     private void createModelDialog() {
         Dialog dialog = new Dialog();
-
         dialog.setHeaderTitle("Model parameters");
-
         VerticalLayout dialogLayout = new VerticalLayout();
 
+        // add model selector to dialog
         Select<String> modelSelect = new Select<>();
         modelSelect.setLabel("Model");
-        modelSelect.setItems(modelService.getLoadedModelNames());
-        modelSelect.setValue(ollamaService.getModel());
         modelSelect.setHelperText("Model to send requests to");
         dialogLayout.add(modelSelect);
-
         dialog.add(dialogLayout);
 
-        Button openModelDialogButton = new Button(ollamaService.getModel(), (e) -> {
-            dialog.open();
+        List<String> loadedModelNames = modelService.getLoadedModelNames();
+        
+        // add button to template header layout that opens model selector dialog
+        Button openModelDialogButton = new Button("Loading init model", (e) -> {
+            modelService.refreshLoadedModels();
+                
+            if(!modelService.getLoadedModelNames().isEmpty()) {
+                modelSelect.setItems(modelService.getLoadedModelNames());
+                modelSelect.setValue(ollamaService.getModel());
+                dialog.open();
+            }
+            else {
+                Notification notification = new Notification("No models loaded. Please pull model before selecting one.",5000,Position.MIDDLE);
+                notification.addThemeVariants(NotificationVariant.LUMO_WARNING);
+                e.getSource().setText("Pull model first");
+                e.getSource().addThemeVariants(ButtonVariant.LUMO_ERROR);
+                notification.open();
+            }
         });
+
+        // if no model is loaded, conditionally style button
+        if(loadedModelNames.isEmpty()){
+            openModelDialogButton.setText("Pull model first");
+            openModelDialogButton.addThemeVariants(ButtonVariant.LUMO_ERROR);
+        }
+        // if at least one model is loaded, check if set model is in the list, otherwise take first one
+        else{
+            if(modelService.getLoadedModelNames().contains(ollamaService.getModel())){
+                openModelDialogButton.setText(ollamaService.getModel());
+            }
+            else{
+                String firstModelInList = modelService.getLoadedModelNames().get(0);
+                openModelDialogButton.setText(firstModelInList);
+                ollamaService.setModel(firstModelInList);
+            }
+        }
+
+        // style button in header to be a little margined to the right
         openModelDialogButton.setClassName("modelMenu");
         header.add(openModelDialogButton);
 
-        
+        // add save button to model selector dialog
         Button saveButton = new Button("Save",e -> {
             ollamaService.setModel(modelSelect.getValue());
             openModelDialogButton.setText(ollamaService.getModel());
+            openModelDialogButton.removeThemeVariants(ButtonVariant.LUMO_ERROR);
             dialog.close();
         });
         dialog.getFooter().add(saveButton);
-        addToNavbar(dialog);
 
+        // add dialog to header
+        addToNavbar(dialog);
     }
 
 
