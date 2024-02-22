@@ -1,6 +1,6 @@
 # Ollama4j-UI
 
-This project should be seen as a showcase to create a java based frontend application (using the [Vaadin](https://vaadin.com/)-Framework) for model interaction against the [Ollama](https://ollama.ai) using the Java [ollama4j](https://github.com/amithkoujalgi/ollama4j) API. 
+This project should be seen as a showcase to create a java based frontend application (using the [Vaadin](https://vaadin.com/)-Framework on top of an [OpenLiberty](https://openliberty.io/) JakartaEE10 server) for model interaction against the [Ollama](https://ollama.ai) using the Java [ollama4j](https://github.com/amithkoujalgi/ollama4j) API. 
 
 It should be considered a set of samples / use cases rather than a fully-functional interchained application serving each and every aspect of AI driven applications.
 
