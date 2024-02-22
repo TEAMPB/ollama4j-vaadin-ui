@@ -1,47 +1,63 @@
-# Project Base for Vaadin Flow 24.0
+# Ollama4j-UI
 
-This project can be used as a starting point to create your own Vaadin Flow 24.0 application with CDI 15.0.
-It contains all the necessary configuration and some placeholder files to get you started.
+This project should be seen as a showcase to create a java based frontend application (using the [Vaadin](https://vaadin.com/)-Framework) for model interaction against the [Ollama](https://ollama.ai) using the Java [ollama4j](https://github.com/amithkoujalgi/ollama4j) API. 
 
-Vaadin 24.0 is based on Jakarta EE 10.0 and requires Java 17.
+It should be considered a set of samples / use cases rather than a fully-functional interchained application serving each and every aspect of AI driven applications.
 
-The best way to use it is via [vaadin.com/start](https://vaadin.com/start) - you can get only the necessary parts and choose the package naming you want to use.
+However one main goal of this repository is that anybody using java as their primary development language can create an environment to start Ollama development on a local server / local machine in only some minutes.
+
+### Architecture
+
+```mermaid 
+flowchart LR
+    subgraph Ollama Deployment
+        direction TB
+        m[Models]
+        OLLAMA[Ollama] -->|manages| m
+    end
+    subgraph JakartaEE Runtime
+        direction LR    
+        UI[Ollama4j-UI] --uses--> O4J[Ollama4j]
+        O4J-. http .-> OLLAMA
+    end
+    BROWSER[browser] -. http .-> UI
+```
+
+### Requirements
+
+The following requirements must be met to run this application:
+
+![Java](https://img.shields.io/badge/Java-17_+-green.svg?style=just-the-message&labelColor=gray)
+
+[![][ollama-shield]][ollama] **Or** [![][ollama-docker-shield]][ollama-docker]
+
+[ollama]: https://ollama.ai/
+
+[ollama-shield]: https://img.shields.io/badge/Ollama-Local_Installation-blue.svg?style=just-the-message&labelColor=gray
+
+[ollama-docker]: https://hub.docker.com/r/ollama/ollama
+
+[ollama-docker-shield]: https://img.shields.io/badge/Ollama-Docker-blue.svg?style=just-the-message&labelColor=gray
+
 
 ## Running the Application
 
-Import the project to the IDE of your choosing as a Maven project. 
+Import the project to the IDE of your choosing as a Maven project. Configure the [microprofile-config.properties](src/main/resources/META-INF/microprofile-config.properties) to match your local requirements.
 
 Run application using
 ```
-mvn wildfly:run
+mvn liberty:dev
 ```
 
-Open [http://localhost:8080/](http://localhost:8080/) in browser.
+Open [http://localhost:9080/ollama4j-ui](http://localhost:9080/ollama4j-ui) in browser.
 
-If you want to run your app locally in the production mode, run using
-```
-mvn clean package wildfly:run -Pproduction
-```
+Specify the model to use using the model-selector in the top right corner ot the application (should be defaulted to your default model set in microprofile-config.properties).
 
-### Running Integration Tests
+### Get Involved
+Contributions are most welcome! Whether it's reporting a bug, proposing an enhancement, or helping with code - any sort of contribution is much appreciated.
 
-Integration tests are implemented using [Vaadin TestBench](https://vaadin.com/testbench). The tests take a few minutes to run and are therefore included in a separate Maven profile. We recommend running tests with a production build to minimize the chance of development time toolchains affecting test stability. To run the tests using Google Chrome, execute
+### Credits
+Shout out to @amithkoujalgi for creating the awesome [ollama4j](https://github.com/amithkoujalgi/ollama4j/) library that inspired the creation of this application.
 
-`mvn verify -Pit,production`
+Further shoutout to everybody involved and active around the awesome [Ollama](https://ollama.ai/) project.
 
-and make sure you have a valid TestBench license installed.
-
-### Deployment
-
-The project is a standard Java/Jakarta EE application, so you can deploy it as you see best, via IDE or using Maven plugins. Wildfly and TomEE plugins are pre-configured for easy testing. Wildfly plugin is used for integration tests. Currently only Wildfly properly supports Java 17.
-
-The application can be deployed on the [Apache TomEE](http://tomee.apache.org/) server via the `tomee-maven-plugin`, which supports hot deployment of code changes (via the `reloadOnUpdate` setting).
-This means that you can make changes to the code in your IDE while the server is running, recompile, and have the server automatically pick up the changes and redeploy them.
-This setting is enabled by default in this project.
-
-One known limitation with hot deployment is that after deleting a `@Route`-annotated view, the route is are still navigable after automatic redeployment.
-In such case, the application must be restarted to remove the route from the registry permanently.   
-
-For documentation on using Vaadin Flow and CDI, visit [vaadin.com/docs](https://vaadin.com/docs/v14/flow/cdi/tutorial-cdi-basic.html)
-
-For more information on Vaadin Flow, visit https://vaadin.com/flow.
