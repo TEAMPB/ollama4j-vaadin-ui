@@ -67,16 +67,19 @@ public class MainLayout extends AppLayout{
 
     private void createDrawer() {
 
+        // add chat accordion to drawer menu
         Accordion chatAccordion = new Accordion();
         RouterLink simpleChatRouterLink = new RouterLink("Simple Chat",SimpleChatView.class);
         simpleChatRouterLink.setHighlightCondition(HighlightConditions.sameLocation());
         chatAccordion.add("Chat",simpleChatRouterLink);
 
+        // add generate accordion to drawer menu
         Accordion generateAccordion = new Accordion();
         RouterLink simpleGenerateRouterLink = new RouterLink("Simple generate",SimpleGenerateView.class);
         simpleChatRouterLink.setHighlightCondition(HighlightConditions.sameLocation());
         generateAccordion.add("Generate",simpleGenerateRouterLink);
 
+        // add models accordion to drawer menu
         Accordion modelAccordion = new Accordion();
         RouterLink listModelsRouterLink = new RouterLink("List models",ListModelsView.class);
         listModelsRouterLink.setHighlightCondition(HighlightConditions.sameLocation());
@@ -86,6 +89,7 @@ public class MainLayout extends AppLayout{
         modelVerticalLayout.setPadding(false);
         modelAccordion.add("Models",modelVerticalLayout);
 
+        // add ollama4j image
         Image image = new Image("images/ollama4j.jpeg", "ollama4j icon");
         image.setClassName("ollama-image");
 
