@@ -23,6 +23,7 @@ import com.vaadin.flow.router.RouterLink;
 
 import agency.schmecker.dev.ollama4j.ui.service.ModelService;
 import agency.schmecker.dev.ollama4j.ui.service.OllamaService;
+import agency.schmecker.dev.ollama4j.ui.view.chat.ImageChatView;
 import agency.schmecker.dev.ollama4j.ui.view.chat.SimpleChatView;
 import agency.schmecker.dev.ollama4j.ui.view.generate.SimpleGenerateView;
 import agency.schmecker.dev.ollama4j.ui.view.model.ListModelsView;
@@ -71,7 +72,11 @@ public class MainLayout extends AppLayout{
         Accordion chatAccordion = new Accordion();
         RouterLink simpleChatRouterLink = new RouterLink("Simple Chat",SimpleChatView.class);
         simpleChatRouterLink.setHighlightCondition(HighlightConditions.sameLocation());
-        chatAccordion.add("Chat",simpleChatRouterLink);
+        RouterLink imageChatRouterLink = new RouterLink("Image Chat",ImageChatView.class);
+        imageChatRouterLink.setHighlightCondition(HighlightConditions.sameLocation());
+        VerticalLayout chatVerticalLayout = new VerticalLayout(simpleChatRouterLink,imageChatRouterLink);
+        chatVerticalLayout.setPadding(false);
+        chatAccordion.add("Chat",chatVerticalLayout);
 
         // add generate accordion to drawer menu
         Accordion generateAccordion = new Accordion();

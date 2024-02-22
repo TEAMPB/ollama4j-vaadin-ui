@@ -24,18 +24,38 @@ public class ChatService implements Serializable {
 
     public String sendChat(String message, OllamaStreamHandler streamHandler){
         OllamaAPI api = ollamaService.getOllamaAPIInstance();
-        api.setRequestTimeoutSeconds(240);
         OllamaChatRequestBuilder builder = OllamaChatRequestBuilder.getInstance(ollamaService.getModel());
 
         OllamaChatRequestModel ollamaChatRequestModel = builder.withMessages(messages).withMessage(OllamaChatMessageRole.USER, message).build();
 
+        return callOllamaChat(streamHandler, api, ollamaChatRequestModel); 
+    }
+
+
+    public String sendChatWithImages(String message, List<byte[]> images, OllamaStreamHandler streamHandler){
+        OllamaAPI api = ollamaService.getOllamaAPIInstance();
+
+        OllamaChatRequestBuilder builder = OllamaChatRequestBuilder.getInstance(ollamaService.getModel());
+
+        OllamaChatRequestModel ollamaChatRequestModel = builder.withMessages(messages).build();
+
+        OllamaChatMessage userMessage = new OllamaChatMessage(OllamaChatMessageRole.USER, message,images);
+
+        ollamaChatRequestModel.getMessages().add(userMessage);
+
+        return callOllamaChat(streamHandler, api, ollamaChatRequestModel);
+    }
+
+
+    
+    private String callOllamaChat(OllamaStreamHandler streamHandler, OllamaAPI api,
+            OllamaChatRequestModel ollamaChatRequestModel) {
         try {
             OllamaChatResult chat = api.chat(ollamaChatRequestModel,streamHandler);
             messages = chat.getChatHistory();
             return chat.getResponse();
         } catch (Exception e) {
             throw new RuntimeException(e);
-        } 
+        }
     }
-
 }
