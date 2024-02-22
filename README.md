@@ -57,7 +57,7 @@ Specify the model to use using the model-selector in the top right corner ot the
 Contributions are most welcome! Whether it's reporting a bug, proposing an enhancement, or helping with code - any sort of contribution is much appreciated.
 
 ### Credits
-Shout out to @amithkoujalgi for creating the awesome [ollama4j](https://github.com/amithkoujalgi/ollama4j/) library that inspired the creation of this application.
+Shout out to [@amithkoujalgi](https://github.com/amithkoujalgi) for creating the awesome [ollama4j](https://github.com/amithkoujalgi/ollama4j/) library that inspired the creation of this application.
 
 Further shoutout to everybody involved and active around the awesome [Ollama](https://ollama.ai/) project.
 
