@@ -23,6 +23,9 @@ flowchart LR
     BROWSER[browser] -. http .-> UI
 ```
 
+### Build Status
+![build-status](https://img.shields.io/github/actions/workflow/status/AgentSchmecker/ollama4j-ui/maven.yml)
+
 ### Requirements
 
 The following requirements must be met to run this application:
