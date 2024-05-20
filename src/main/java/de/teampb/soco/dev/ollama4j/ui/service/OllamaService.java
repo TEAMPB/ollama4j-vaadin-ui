@@ -15,7 +15,7 @@ public class OllamaService implements Serializable{
     @Inject @ConfigProperty(name="agency.schmecker.dev.ollama4j.ui.ollama.defaultmodel",defaultValue = "llama2")
     private String model;
     @Inject @ConfigProperty(name="agency.schmecker.dev.ollama4j.ui.ollama.timeout",defaultValue = "120")
-    private  Integer requestTimeout = 120;
+    private  Integer requestTimeout;
     
     public String getModel() {
         return model;
