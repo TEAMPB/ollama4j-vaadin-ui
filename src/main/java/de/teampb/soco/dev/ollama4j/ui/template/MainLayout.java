@@ -1,4 +1,4 @@
-package agency.schmecker.dev.ollama4j.ui.template;
+package de.teampb.soco.dev.ollama4j.ui.template;
 
 import java.util.List;
 import com.vaadin.flow.component.accordion.Accordion;
@@ -21,13 +21,13 @@ import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.router.HighlightConditions;
 import com.vaadin.flow.router.RouterLink;
 
-import agency.schmecker.dev.ollama4j.ui.service.ModelService;
-import agency.schmecker.dev.ollama4j.ui.service.OllamaService;
-import agency.schmecker.dev.ollama4j.ui.view.chat.ImageChatView;
-import agency.schmecker.dev.ollama4j.ui.view.chat.SimpleChatView;
-import agency.schmecker.dev.ollama4j.ui.view.generate.SimpleGenerateView;
-import agency.schmecker.dev.ollama4j.ui.view.model.ListModelsView;
-import agency.schmecker.dev.ollama4j.ui.view.model.PullModelView;
+import de.teampb.soco.dev.ollama4j.ui.service.ModelService;
+import de.teampb.soco.dev.ollama4j.ui.service.OllamaService;
+import de.teampb.soco.dev.ollama4j.ui.view.chat.ImageChatView;
+import de.teampb.soco.dev.ollama4j.ui.view.chat.SimpleChatView;
+import de.teampb.soco.dev.ollama4j.ui.view.generate.SimpleGenerateView;
+import de.teampb.soco.dev.ollama4j.ui.view.model.ListModelsView;
+import de.teampb.soco.dev.ollama4j.ui.view.model.PullModelView;
 import jakarta.annotation.PostConstruct;
 import jakarta.inject.Inject;
 

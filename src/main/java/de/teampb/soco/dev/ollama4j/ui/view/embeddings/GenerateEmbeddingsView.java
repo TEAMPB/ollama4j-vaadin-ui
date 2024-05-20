@@ -1,4 +1,4 @@
-package agency.schmecker.dev.ollama4j.ui.view.embeddings;
+package de.teampb.soco.dev.ollama4j.ui.view.embeddings;
 
 import com.vaadin.cdi.annotation.CdiComponent;
 import com.vaadin.flow.component.button.Button;
@@ -9,8 +9,8 @@ import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import agency.schmecker.dev.ollama4j.ui.service.EmbeddingService;
-import agency.schmecker.dev.ollama4j.ui.template.MainLayout;
+import de.teampb.soco.dev.ollama4j.ui.service.EmbeddingService;
+import de.teampb.soco.dev.ollama4j.ui.template.MainLayout;
 import jakarta.inject.Inject;
 
 @Route(value = "embeddings/generate", layout = MainLayout.class)

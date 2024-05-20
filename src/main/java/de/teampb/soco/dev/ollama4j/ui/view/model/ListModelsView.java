@@ -1,4 +1,4 @@
-package agency.schmecker.dev.ollama4j.ui.view.model;
+package de.teampb.soco.dev.ollama4j.ui.view.model;
 
 import java.util.stream.Stream;
 
@@ -22,8 +22,8 @@ import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
-import agency.schmecker.dev.ollama4j.ui.service.ModelService;
-import agency.schmecker.dev.ollama4j.ui.template.MainLayout;
+import de.teampb.soco.dev.ollama4j.ui.service.ModelService;
+import de.teampb.soco.dev.ollama4j.ui.template.MainLayout;
 import io.github.amithkoujalgi.ollama4j.core.models.Model;
 import io.github.amithkoujalgi.ollama4j.core.models.ModelDetail;
 import jakarta.annotation.PostConstruct;

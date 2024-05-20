@@ -1,4 +1,4 @@
-package agency.schmecker.dev.ollama4j.ui.app;
+package de.teampb.soco.dev.ollama4j.ui.app;
 
 import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.component.page.Push;

@@ -1,4 +1,4 @@
-package agency.schmecker.dev.ollama4j.ui.view.model;
+package de.teampb.soco.dev.ollama4j.ui.view.model;
 
 import com.vaadin.cdi.annotation.CdiComponent;
 import com.vaadin.flow.component.button.Button;
@@ -13,8 +13,8 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
-import agency.schmecker.dev.ollama4j.ui.service.ModelService;
-import agency.schmecker.dev.ollama4j.ui.template.MainLayout;
+import de.teampb.soco.dev.ollama4j.ui.service.ModelService;
+import de.teampb.soco.dev.ollama4j.ui.template.MainLayout;
 import jakarta.annotation.PostConstruct;
 import jakarta.inject.Inject;
 

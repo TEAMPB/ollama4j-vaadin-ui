@@ -1,4 +1,4 @@
-package agency.schmecker.dev.ollama4j.ui.service;
+package de.teampb.soco.dev.ollama4j.ui.service;
 
 import java.io.Serializable;
 import java.util.Map;
