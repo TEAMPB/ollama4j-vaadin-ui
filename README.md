@@ -49,7 +49,7 @@ Import the project to the IDE of your choosing as a Maven project. Configure the
 
 Run application using
 ```
-mvn liberty:dev
+mvn liberty:dev (resp ./mvnw or mvnw in case maven is not installed locally)
 ```
 
 Open [http://localhost:9080/ollama4j-ui](http://localhost:9080/ollama4j-ui) in browser.
